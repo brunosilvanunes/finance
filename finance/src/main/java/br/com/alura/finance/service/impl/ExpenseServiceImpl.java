@@ -7,6 +7,9 @@ import br.com.alura.finance.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
 
@@ -25,5 +28,24 @@ public class ExpenseServiceImpl implements ExpenseService {
         repository.save(entity);
 
         return expenseDTO;
+    }
+
+    @Override
+    public List<ExpenseDTO> getExpenses() {
+        List<ExpenseEntity> entities = repository.findAll();
+
+        List<ExpenseDTO> expenseDTOList = new ArrayList<>();
+        ExpenseDTO expenseDTO = new ExpenseDTO();
+
+        entities.forEach(entity -> {
+            expenseDTO.setKey(entity.getKey());
+            expenseDTO.setValue(entity.getValue());
+            expenseDTO.setCreatedDate(entity.getCreatedDate());
+            expenseDTO.setEndDate(entity.getEndDate());
+
+            expenseDTOList.add(expenseDTO);
+        });
+
+        return expenseDTOList;
     }
 }

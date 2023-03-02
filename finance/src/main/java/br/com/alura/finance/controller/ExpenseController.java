@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("expense")
 public class ExpenseController {
@@ -14,8 +16,8 @@ public class ExpenseController {
     private ExpenseService service;
 
     @GetMapping
-    public ResponseEntity<String> getExpenses() {
-        return ResponseEntity.ok("financiamento imobiliario");
+    public ResponseEntity<List<ExpenseDTO>> getExpenses() {
+        return ResponseEntity.ok(service.getExpenses());
     }
 
     @PostMapping
