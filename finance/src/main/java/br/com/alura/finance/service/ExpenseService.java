@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ExpenseService {
 
-    public ExpenseDTO saveExpense(ExpenseDTO expenseDTO);
+    void saveExpense(ExpenseDTO expenseDTO);
 
     List<ExpenseDTO> getExpenses();
 }
